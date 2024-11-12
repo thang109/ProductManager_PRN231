@@ -1,0 +1,19 @@
+﻿@page "{id:int}"
+@model BookShopWebApp.Pages.EditCategoryModel
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<h1 class="text-center my-4">Edit Category</h1>
+
+<form method="post" class="container">
+    <input type="hidden" asp-for="Categories.CategoryID" class="form-control" required />
+
+    <div class="mb-3">
+        <label asp-for="Categories.CategoryName" class="form-label">Name:</label>
+        <input asp-for="Categories.CategoryName" class="form-control" required />
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    </div>
+</form>

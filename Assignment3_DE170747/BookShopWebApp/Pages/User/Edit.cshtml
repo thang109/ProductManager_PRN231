@@ -1,0 +1,17 @@
+﻿@page "{id:int}"
+@model BookShopWebApp.Pages.EditUserModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h1 class="text-center my-4">Edit User</h1>
+
+<form method="post" class="container">
+    <input type="hidden" asp-for="User.UserId" class="form-control" required />
+
+    <div class="mb-3">
+        <label asp-for="User.UserName" class="form-label">Username:</label>
+        <input asp-for="User.UserName" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>

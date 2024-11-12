@@ -1,0 +1,35 @@
+﻿@page "{id:int}"
+@model BookShopWebApp.Pages.DeleteShippingModel
+@{
+    ViewData["Title"] = "Delete Shipping";
+}
+
+<h1 class="text-center my-4">Delete Shipping</h1>
+
+<div class="container text-center">
+    <p class="mb-4">Are you sure you want to delete this Shipping?</p>
+
+    <div class="mb-2">
+        <strong>Book ID:</strong> @Model.Shipping.BookId
+    </div>
+    <div class="mb-2">
+        <strong>Date Booking:</strong> @Model.Shipping.DateBooking
+    </div>
+    <div class="mb-2">
+        <strong>Date Ship:</strong> @Model.Shipping.DateShip
+    </div>
+    <div class="mb-2">
+        <strong>Location Ship:</strong> @Model.Shipping.LocationShip
+    </div>
+    <div class="mb-2">
+        <strong>User Submit:</strong> @Model.Shipping.UserOrderId
+    </div>
+    <div class="mb-4">
+        <strong>User Approve:</strong> @Model.Shipping.UserApproveId
+    </div>
+
+    <form method="post" class="d-inline">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a asp-page="/Shipping/Shipping" class="btn btn-secondary ms-2">Cancel</a>
+</div>

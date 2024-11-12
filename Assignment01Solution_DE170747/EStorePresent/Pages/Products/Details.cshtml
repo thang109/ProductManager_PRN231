@@ -1,0 +1,27 @@
+﻿@page
+@model Assignment2.Pages.Products.DetailsModel
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<h1>Product Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4>@Model.Product.ProductName</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Product.Weight)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Product.Weight)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Product.UnitPrice)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Product.UnitPrice)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Product.UnitInStock)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Product.UnitInStock)</dd>
+    </div>
+    <div class="card-footer text-end">
+        <a class="btn btn-secondary" asp-page="./Index">Back to List</a>
+    </div>
+</div>

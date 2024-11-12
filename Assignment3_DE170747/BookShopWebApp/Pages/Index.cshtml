@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center" data-aos="fade-up">
+    <h1 class="display-4">Welcome to BookShop</h1>
+    <p>Explore our collection of books and more.</p>
+</div>
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <h3>Wide Range of Books</h3>
+        <p>Discover books from all genres, from fiction to non-fiction, and much more.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Fast Shipping</h3>
+        <p>Get your books delivered to your doorstep in no time with our fast shipping service.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Easy Payment</h3>
+        <p>Secure and easy payment options to make your shopping experience smooth.</p>
+    </div>
+</div>
+<div class="mt-5 text-center">
+    <h2>What Our Customers Say</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <blockquote class="blockquote">
+                <p class="mb-0">"Great selection of books and fantastic customer service!"</p>
+            </blockquote>
+        </div>
+        <div class="col-md-4">
+            <blockquote class="blockquote">
+                <p class="mb-0">"Fast delivery and great prices, will shop again!"</p>
+            </blockquote>
+        </div>
+        <div class="col-md-4">
+            <blockquote class="blockquote">
+                <p class="mb-0">"I love the variety of books available. Highly recommended!"</p>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+
+<!-- Include AOS (Animate On Scroll) library -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>

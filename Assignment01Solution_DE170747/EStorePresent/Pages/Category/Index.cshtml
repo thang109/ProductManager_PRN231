@@ -1,0 +1,88 @@
+﻿@page
+@model Assignment2.Pages.Category.IndexModel
+@{
+    ViewData["Title"] = "Category Management";
+}
+
+<h1>Category Management</h1>
+
+@if (!Model.Categories.Any())
+{
+    <p class="text-center text-muted">No categories available</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.CategoryName</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editModal" data-id="@category.CategoryId" data-categoryname="@category.CategoryName">Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<!-- Create Category Form -->
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Category.CategoryName"></label>
+        <input asp-for="Category.CategoryName" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success" name="Action" value="CREATE">Create</button>
+</form>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <input type="hidden" asp-for="Category.CategoryId" />
+                    <div class="form-group">
+                        <label asp-for="Category.CategoryName"></label>
+                        <input asp-for="Category.CategoryName" class="form-control" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="Action" value="EDIT">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var categoryName = button.data('categoryname');
+
+            var modal = $(this);
+            modal.find('input[name="Category.CategoryId"]').val(id);
+            modal.find('input[name="Category.CategoryName"]').val(categoryName);
+        });
+    </script>
+}

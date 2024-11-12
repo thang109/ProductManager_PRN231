@@ -1,0 +1,72 @@
+﻿@page
+@model BookShopWebApp.Pages.BuyModel
+@{
+    ViewData["Title"] = "Buy Book";
+}
+
+<h1 class="text-center my-4">Buy Book</h1>
+
+@if (Model.Book != null)
+{
+    <div class="container mb-4">
+        <h2>@Model.Book.BookName</h2>
+        <p><strong>Category ID:</strong> @Model.Book.CategoryId</p>
+        <p><strong>Price:</strong> @Model.Book.Price.ToString()</p>
+    </div>
+
+    <form method="post" class="container">
+        <input type="hidden" asp-for="Shipping.BookId" value="@Model.Book.BookId" />
+
+        <div class="mb-3">
+            <label asp-for="Shipping.LocationShip" class="form-label">Shipping Location:</label>
+            <input asp-for="Shipping.LocationShip" class="form-control" required />
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Shipping.UserOrderId" class="form-label">User Order Name:</label>
+         @*    <input asp-for="Shipping.UserOrderId" class="form-control" type="number" required /> *@
+            <select asp-for="Shipping.UserOrderId" class="form-control" required>
+                <option value="">Select a category</option>
+                @foreach (var user in ViewBag.User)
+                {
+                    <option value="@user.userId">@user.UserName</option>
+                }
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Shipping.UserApproveId" class="form-label">User Approve Name:</label>
+            @* <input asp-for="Shipping.UserApproveId" class="form-control" type="number" required /> *@
+            <select asp-for="Shipping.UserApproveId" class="form-control" required>
+                <option value="">Select a category</option>
+                @foreach (var user in ViewBag.User)
+                {
+                    <option value="@user.userId">@user.UserName</option>
+                }
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Shipping.DateShip" class="form-label">Date of Shipment:</label>
+            <input asp-for="Shipping.DateShip" class="form-control" type="date" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+
+        @if (!ModelState.IsValid)
+        {
+            <div class="text-danger mt-3">
+                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+    </form>
+}
+else
+{
+    <div class="container">
+        <p class="text-danger">Book not found.</p>
+    </div>
+}

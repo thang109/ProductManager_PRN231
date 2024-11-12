@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model BookShopWebApp.Pages.Shipping.ApproveModel
+@{
+    ViewData["Title"] = "Approve Shipping";
+}
+
+<h1 class="text-center my-4">Delete Shipping</h1>
+
+<div class="container text-center">
+    <p class="mb-4">Are you sure you want to Approve this shipping?</p>
+
+    <form method="post" class="d-inline">
+        <input type="hidden" asp-for="Shipping.ShippingId" class="form-control" required />
+        <input type="hidden" asp-for="Shipping.Status" class="form-control" required />
+        <input type="hidden" asp-for="Shipping.BookId" class="form-control" required />
+        <input type="hidden" asp-for="Shipping.DateBooking" />
+        <input type="hidden" asp-for="Shipping.DateShip" />
+        <input type="hidden" asp-for="Shipping.LocationShip" />
+        <input type="hidden" asp-for="Shipping.UserOrderId" />
+        <input type="hidden" asp-for="Shipping.UserApproveId" />
+        <button type="submit" class="btn btn-success">Approve</button>
+    </form>
+    <a asp-page="/Shipping/Shipping" class="btn btn-secondary ms-2">Cancel</a>
+</div>

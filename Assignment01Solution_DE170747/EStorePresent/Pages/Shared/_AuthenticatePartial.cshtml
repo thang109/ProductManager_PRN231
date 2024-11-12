@@ -1,0 +1,14 @@
+﻿@{
+    var userName = Context.Session.GetString("UserName");
+}
+<div>
+    @if (userName != null)
+    {
+        <p class="mb-0"><a class="nav-link" asp-page="Account/Logout">@userName (Logout)</a></p>
+    }
+    else
+    {
+        <a class="nav-link" asp-page="Account/Login">Log in</a>
+        <a class="nav-link" asp-page="Account/SignUp">Sign up</a>
+    }
+</div>

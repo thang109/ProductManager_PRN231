@@ -1,0 +1,59 @@
+﻿@page
+@model BookShopWebApp.Pages.ShippingsModel
+@{
+    ViewData["Title"] = "Shippings";
+}
+
+<h1 class="text-center my-4">Shippings</h1>
+<div class="text-end mb-3">
+    <a asp-page="./Add" class="btn btn-primary">Add New Shipping</a>
+</div>
+
+<h2>List of Shippings</h2>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Shipping ID</th>
+            <th>Book Name</th>
+            <th>Date Booking</th>
+            <th>Date Ship</th>
+            <th>Location Ship</th>
+            <th>User Submit</th>
+            <th>User Approve</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Shipping != null && Model.Shipping.Any())
+        {
+            foreach (var shipping in Model.Shipping)
+            {
+                <tr>
+                    <td>@shipping.ShippingId</td>
+                    <td>@shipping.Books.BookName</td>
+                    <td>@shipping.DateBooking.ToString()</td>
+                    <td>@shipping.DateShip</td>
+                    <td>@shipping.LocationShip</td>
+                    <td>@shipping.UserOrder.UserName</td>
+                    <td>@shipping.UserApprove.UserName</td>
+                    <td>@shipping.Status</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@shipping.ShippingId" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@shipping.ShippingId" class="btn btn-sm btn-danger ms-2">Delete</a>           
+                        @if (HttpContext.Session.GetInt32("UserID") == shipping.UserApproveId && shipping.Status.Equals("Pending"))
+                        {
+                            <a asp-page="./Approve" asp-route-id="@shipping.ShippingId" class="btn btn-sm btn-success ms-2">Approve</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">No Shippings available.</td>
+            </tr>
+        }
+    </tbody>
+</table>

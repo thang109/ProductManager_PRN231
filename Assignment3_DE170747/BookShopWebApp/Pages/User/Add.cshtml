@@ -1,0 +1,19 @@
+﻿@page
+@model BookShopWebApp.Pages.AddUserModel
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<h1 class="text-center my-4">Add New User</h1>
+
+<form method="post" class="container">
+    <div class="mb-3">
+        <label asp-for="NewUser.UserName" class="form-label">Username:</label>
+        <input asp-for="NewUser.UserName" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewUser.Password" class="form-label">Password:</label>
+        <input asp-for="NewUser.Password" class="form-control" required type="password" />
+    </div>
+    <button type="submit" class="btn btn-success">Add User</button>
+</form>

@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model BookShopWebApp.Pages.EditShippingModel
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<h1 class="text-center my-4">Edit Shipping</h1>
+
+<form method="post" class="container">
+    <input type="hidden" asp-for="Shipping.ShippingId" class="form-control" required />
+    <input type="hidden" asp-for="Shipping.Status" class="form-control" required />
+    <div class="mb-3">
+        <label asp-for="Shipping.BookId" class="form-label">Shipping ID:</label>
+        <input asp-for="Shipping.BookId" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Shipping.DateBooking" class="form-label">Date Booking:</label>
+        <input asp-for="Shipping.DateBooking" class="form-control" required type="date" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Shipping.DateShip" class="form-label">Date Ship:</label>
+        <input asp-for="Shipping.DateShip" class="form-control" required type="date" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Shipping.LocationShip" class="form-label">Location Ship:</label>
+        <input asp-for="Shipping.LocationShip" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Shipping.UserOrderId" class="form-label">User Submit:</label>
+        <input asp-for="Shipping.UserOrderId" class="form-control" required type="number" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Shipping.UserApproveId" class="form-label">User Approve:</label>
+        <input asp-for="Shipping.UserApproveId" class="form-control" required type="number" />
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    </div>
+</form>

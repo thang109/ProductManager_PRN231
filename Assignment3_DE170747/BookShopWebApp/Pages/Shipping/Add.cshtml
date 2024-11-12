@@ -1,0 +1,37 @@
+﻿@page
+@model BookShopWebApp.Pages.AddShippingModel
+@{
+    ViewData["Title"] = "Add Shipping";
+}
+
+<h1 class="text-center my-4">Add New Shipping</h1>
+
+<form method="post" class="container">
+    <div class="mb-3">
+        <label asp-for="NewShip.BookId" class="form-label">Book ID:</label>
+        <input asp-for="NewShip.BookId" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewShip.DateBooking" class="form-label">Date Booking:</label>
+        <input asp-for="NewShip.DateBooking" class="form-control" required type="date" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewShip.DateShip" class="form-label">Date Ship:</label>
+        <input asp-for="NewShip.DateShip" class="form-control" required type="date" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewShip.LocationShip" class="form-label">Location Ship:</label>
+        <input asp-for="NewShip.LocationShip" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewShip.UserOrderId" class="form-label">User Submit:</label>
+        <input asp-for="NewShip.UserOrderId" class="form-control" required type="number" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewShip.UserApproveId" class="form-label">User Approve:</label>
+        <input asp-for="NewShip.UserApproveId" class="form-control" required type="number" />
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Add Shipping</button>
+    </div>
+</form>

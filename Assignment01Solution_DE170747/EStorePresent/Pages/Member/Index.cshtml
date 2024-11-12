@@ -1,0 +1,82 @@
+﻿@page
+@model EStorePresent.Pages.Member.IndexModel
+@{
+    ViewData["Title"] = "Member";
+}
+
+<h1>Members Management</h1>
+
+@if (!Model.members.Any())
+{
+    <p class="text-center text-muted">No members available</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Member Name</th>
+                    <th>Company Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var member in Model.members)
+                {
+                    <tr>
+                        <td>@member.Email</td>
+                        <td>@member.CompanyName</td>
+                        <td>@member.City</td>
+                        <td>@member.Country</td>
+                        <td>@member.Password</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#deleteModal" data-id="@member.MemberId">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this member?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <form method="post" id="deleteForm">
+                    <input type="hidden" name="MemberId" id="memberIdToDelete" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var memberId = button.data('id'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('#memberIdToDelete').val(memberId); // Set the hidden input field with the member ID
+        });
+    </script>
+}

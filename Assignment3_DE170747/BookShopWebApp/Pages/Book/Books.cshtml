@@ -1,0 +1,61 @@
+﻿@page
+@model BookShopWebApp.Pages.BooksModel
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h1 class="mt-4 mb-4 text-center">Books</h1>
+
+@if (HttpContext.Session.GetString("Username") != null)
+{
+    <div class="text-end mb-3">
+        <a asp-page="./Add" class="btn btn-primary">Add New Book</a>
+    </div>
+}
+
+<!-- Danh sách sách -->
+<h2 class="mb-4">List of Books</h2>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Book ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Books != null && Model.Books.Any())
+            {
+                foreach (var book in Model.Books)
+                {
+                    <tr>
+                        <td>@book.BookId</td>
+                        <td>@book.BookName</td>
+                        <td>@book.Category.CategoryName</td>
+                        <td>@book.Price</td>
+                        <td>
+                            @if (HttpContext.Session.GetString("Username") != null)
+                            {
+                                <a asp-page="./Edit" asp-route-id="@book.BookId" class="btn btn-sm btn-warning me-2">Edit</a>
+                                <a asp-page="./Delete" asp-route-id="@book.BookId" class="btn btn-sm btn-danger me-2">Delete</a>
+                            }
+                            else
+                            {
+                                <a asp-page="/Login" class="btn btn-sm btn-secondary">Login to Buy</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No books available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

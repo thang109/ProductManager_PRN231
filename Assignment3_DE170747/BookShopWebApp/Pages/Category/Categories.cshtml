@@ -1,0 +1,43 @@
+﻿@page
+@model BookShopWebApp.Pages.CategoriesModel
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1 class="text-center my-4">Categories</h1>
+<div class="text-end mb-3">
+    <a asp-page="./Add" class="btn btn-primary">Add Category</a>
+</div>
+
+<h2>List of Categories</h2>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Category ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Categories != null && Model.Categories.Any())
+        {
+            foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td>@category.CategoryID</td>
+                    <td>@category.CategoryName</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@category.CategoryID" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-page="/Category/Delete" asp-route-id="@category.CategoryID" class="btn btn-sm btn-danger ms-2">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">No categories available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
